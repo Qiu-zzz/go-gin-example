@@ -2,11 +2,11 @@ package logging
 
 import (
 	"fmt"
-	"github.com/EDDYCJY/go-gin-example/pkg/file"
+	"github.com/go-gin-example/pkg/file"
 	"os"
 	"time"
 
-	"github.com/EDDYCJY/go-gin-example/pkg/setting"
+	"github.com/go-gin-example/pkg/setting"
 )
 
 // getLogFilePath get the log file save path
