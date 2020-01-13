@@ -1,0 +1,8 @@
+[INFO][request.go:12]2020/01/03 16:52:42 [Username.Required Can not be empty]
+[INFO][request.go:12]2020/01/03 16:52:42 [Password.Required Can not be empty]
+[INFO][request.go:12]2020/01/03 16:54:00 [Username.Required Can not be empty]
+[INFO][request.go:12]2020/01/03 16:54:00 [Password.Required Can not be empty]
+[INFO][request.go:12]2020/01/03 16:57:54 [Username.Required Can not be empty]
+[INFO][request.go:12]2020/01/03 16:57:54 [Password.Required Can not be empty]
+[INFO][request.go:12]2020/01/03 17:08:02 [Username.Required Can not be empty]
+[INFO][request.go:12]2020/01/03 17:08:02 [Password.Required Can not be empty]
