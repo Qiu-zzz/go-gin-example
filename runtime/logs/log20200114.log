@@ -1,0 +1,4 @@
+[INFO][request.go:12]2020/01/14 08:17:03 [Username.Required Can not be empty]
+[INFO][request.go:12]2020/01/14 08:17:03 [Password.Required Can not be empty]
+[INFO][request.go:12]2020/01/14 08:17:31 [Username.Required Can not be empty]
+[INFO][request.go:12]2020/01/14 08:34:41 [id Minimum is 1]
