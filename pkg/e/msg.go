@@ -22,6 +22,8 @@ var MsgFlags = map[int]string{
 	ERROR_COUNT_ARTICLE_FAIL:        "统计文章失败",
 	ERROR_GET_ARTICLES_FAIL:         "获取多个文章失败",
 	ERROR_GET_ARTICLE_FAIL:          "获取单个文章失败",
+	ERROR_GET_COMMENTS_FAIL:         "获取评论失败",
+	ERROR_ADD_COMMENT_FAIL:          "新增评论失败",
 	ERROR_GEN_ARTICLE_POSTER_FAIL:   "生成文章海报失败",
 	ERROR_AUTH_CHECK_TOKEN_FAIL:     "Token鉴权失败",
 	ERROR_AUTH_CHECK_TOKEN_TIMEOUT:  "Token已超时",
