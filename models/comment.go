@@ -28,9 +28,9 @@ func ExistCommentById(id int) (bool, error) {
 }
 
 
-func GetComments(pageNum int, pageSize int, maps interface{}, articleId int,parentId int) ([]*Comment, error) {
+func GetComments(pageNum int, pageSize int,  articleId int) ([]*Comment, error) {
 	var comments []*Comment
-	err := db.Where("parent_id = ? AND article_id = ?", parentId,articleId).Find(&comments).Error
+	err := db.Where("article_id = ? AND deleted_on = ?",articleId,0).Find(&comments).Error
 	if err != nil {
 		return nil, err
 	}
@@ -45,6 +45,13 @@ func AddComment(data map[string]interface{}) error{
 		ParentId:     data["parent_id"].(int),
 	}
 	if err := db.Create(&comment).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func DeleteComment(id int)error  {
+	if err := db.Where("id = ?", id).Delete(Comment{}).Error; err != nil {
 		return err
 	}
 	return nil

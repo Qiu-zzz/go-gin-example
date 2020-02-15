@@ -100,3 +100,32 @@ func AddComments(c *gin.Context) {
 	}
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
+
+
+
+// @Summary delete comment
+// @Produce  json
+// @Param id path int true "ID"
+// @Success 200 {object} app.Response
+// @Failure 500 {object} app.Response
+// @Router /comments [delete]
+func DeleteComment(c *gin.Context){
+	appG := app.Gin{C: c}
+	valid := validation.Validation{}
+	id := com.StrTo(c.Param("id")).MustInt()
+	valid.Min(id, 1, "id").Message("ID必须大于0")
+
+	if valid.HasErrors() {
+		app.MarkErrors(valid.Errors)
+		appG.Response(http.StatusOK, e.INVALID_PARAMS, nil)
+		return
+	}
+	commentService := comment_service.Comment{
+		ID:   id,
+	}
+	if err := commentService.Delete(); err !=nil{
+		appG.Response(http.StatusInternalServerError, e.ERROR_ADD_COMMENT_FAIL, nil)
+		return
+	}
+	appG.Response(http.StatusOK, e.SUCCESS, nil)
+}

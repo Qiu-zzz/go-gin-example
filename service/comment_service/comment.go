@@ -6,22 +6,22 @@ import (
 )
 
 type Comment struct {
-	ID            int
+	ID int
 
-	Content       string
-	ParentId      int
-	ArticleId     int
-	CreatedBy     string
-	ModifiedBy    string
+	Content    string
+	ParentId   int
+	ArticleId  int
+	CreatedBy  string
+	ModifiedBy string
 
 	PageNum  int
 	PageSize int
 }
 
-func (c *Comment) GetAll()([]*models.Comment,error) {
+func (c *Comment) GetAll() ([]*models.Comment, error) {
 	var comments []*models.Comment
 
-	comments, err := models.GetComments(c.PageNum, c.PageSize, c.getMaps(),c.ArticleId,c.ParentId)
+	comments, err := models.GetComments(c.PageNum, c.PageSize, c.ArticleId)
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
@@ -43,13 +43,17 @@ func (c *Comment) getMaps() map[string]interface{} {
 
 func (c *Comment) Add() error {
 	comment := map[string]interface{}{
-		"content": c.Content,
+		"content":    c.Content,
 		"created_by": c.CreatedBy,
 		"article_id": c.ArticleId,
-		"parent_id": c.ParentId,
+		"parent_id":  c.ParentId,
 	}
-	if err :=models.AddComment(comment); err !=nil {
+	if err := models.AddComment(comment); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (c *Comment) Delete() error {
+	return models.DeleteComment(c.ID)
 }

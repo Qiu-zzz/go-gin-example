@@ -10,6 +10,8 @@ type Article struct {
 	TagID int `json:"tag_id" gorm:"index"`
 	Tag   Tag `json:"tag"`
 
+	Comment []*Comment `json:"comment" gorm:"FOREIGNKEY:ArticleId;ASSOCIATION_FOREIGNKEY:ID"`
+
 	Title         string `json:"title"`
 	Desc          string `json:"desc"`
 	Content       string `json:"content"`
@@ -58,12 +60,7 @@ func GetArticles(pageNum int, pageSize int, maps interface{}) ([]*Article, error
 // GetArticle Get a single article based on ID
 func GetArticle(id int) (*Article, error) {
 	var article Article
-	err := db.Where("id = ? AND deleted_on = ? ", id, 0).First(&article).Error
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
-	}
-
-	err = db.Model(&article).Related(&article.Tag).Error
+	err := db.Preload("Tag").Preload("Comment").Where("id = ? AND deleted_on = ? ", id, 0).First(&article).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}

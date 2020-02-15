@@ -39,6 +39,7 @@ func InitRouter() *gin.Engine {
 	// 评论测试
 	r.GET("/comment",v1.GetComments)
 	r.POST("/comment",v1.AddComments)
+	r.DELETE("/comment/:id",v1.DeleteComment)
 
 	apiv1 := r.Group("/api/v1")
 	apiv1.Use(jwt.JWT())
