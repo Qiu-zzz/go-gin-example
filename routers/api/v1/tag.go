@@ -16,6 +16,7 @@ import (
 	"github.com/go-gin-example/service/tag_service"
 )
 
+//<-----获取标签----->
 // @Summary Get multiple article tags
 // @Produce  json
 // @Param name query string false "Name"
@@ -55,12 +56,12 @@ func GetTags(c *gin.Context) {
 	})
 }
 
+//<-----新增标签----->
 type AddTagForm struct {
 	Name      string `form:"name" valid:"Required;MaxSize(100)"`
 	CreatedBy string `form:"created_by" valid:"Required;MaxSize(100)"`
 	State     int    `form:"state" valid:"Range(0,1)"`
 }
-
 // @Summary Add article tag
 // @Produce  json
 // @Param name body string true "Name"
@@ -105,13 +106,13 @@ func AddTag(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
+//<-----修改标签----->
 type EditTagForm struct {
 	ID         int    `form:"id" valid:"Required;Min(1)"`
 	Name       string `form:"name" valid:"Required;MaxSize(100)"`
 	ModifiedBy string `form:"modified_by" valid:"Required;MaxSize(100)"`
 	State      int    `form:"state" valid:"Range(0,1)"`
 }
-
 // @Summary Update article tag
 // @Produce  json
 // @Param id path int true "ID"
@@ -160,6 +161,7 @@ func EditTag(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
+//<-----删除标签----->
 // @Summary Delete article tag
 // @Produce  json
 // @Param id path int true "ID"
@@ -197,6 +199,7 @@ func DeleteTag(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
+//<-----导出标签----->
 // @Summary Export article tag
 // @Produce  json
 // @Param name body string false "Name"
@@ -229,6 +232,7 @@ func ExportTag(c *gin.Context) {
 	})
 }
 
+//<-----导入标签----->
 // @Summary Import article tag
 // @Produce  json
 // @Param file body file true "Excel File"

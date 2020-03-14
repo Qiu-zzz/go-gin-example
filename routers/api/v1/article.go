@@ -16,7 +16,11 @@ import (
 	"github.com/go-gin-example/service/article_service"
 	"github.com/go-gin-example/service/tag_service"
 )
+const (
+	QRCODE_URL = "https://github.com/blog#gin%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95"
+)
 
+//<-----获取特定文章----->
 // @Summary Get a single article
 // @Produce  json
 // @Param id path int true "ID"
@@ -55,6 +59,8 @@ func GetArticle(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, article)
 }
 
+
+//<-----获取所有文章----->
 // @Summary Get multiple articles
 // @Produce  json
 // @Param tag_id body int false "TagID"
@@ -120,6 +126,7 @@ func GetArticles(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, data)
 }
 
+//<-----新增文章----->
 type AddArticleForm struct {
 	TagID         int    `form:"tag_id" valid:"Required;Min(1)"`
 	Title         string `form:"title" valid:"Required;MaxSize(100)"`
@@ -129,7 +136,6 @@ type AddArticleForm struct {
 	CoverImageUrl string `form:"cover_image_url" valid:"Required;MaxSize(255)"`
 	State         int    `form:"state" valid:"Range(0,1)"`
 }
-
 // @Summary Add article
 // @Produce  json
 // @Param tag_id body int true "TagID"
@@ -181,6 +187,7 @@ func AddArticle(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
+//<-----修改文章----->
 type EditArticleForm struct {
 	ID            int    `form:"id" valid:"Required;Min(1)"`
 	TagID         int    `form:"tag_id" valid:"Required;Min(1)"`
@@ -191,7 +198,6 @@ type EditArticleForm struct {
 	CoverImageUrl string `form:"cover_image_url" valid:"Required;MaxSize(255)"`
 	State         int    `form:"state" valid:"Range(0,1)"`
 }
-
 // @Summary Update article
 // @Produce  json
 // @Param id path int true "ID"
@@ -257,6 +263,7 @@ func EditArticle(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
+//<-----删除文章----->
 // @Summary Delete article
 // @Produce  json
 // @Param id path int true "ID"
@@ -295,10 +302,7 @@ func DeleteArticle(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
-const (
-	QRCODE_URL = "https://github.com/blog#gin%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95"
-)
-
+//<-----生成文章海报----->
 func GenerateArticlePoster(c *gin.Context) {
 	appG := app.Gin{C: c}
 	article := &article_service.Article{}

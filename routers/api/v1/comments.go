@@ -14,6 +14,7 @@ import (
 	"net/http"
 )
 
+//<-----获取评论----->
 // @Summary Get multiple comments
 // @Produce  json
 // @Param article_id body int false "ArticleId"
@@ -50,6 +51,7 @@ func GetComments(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, data)
 }
 
+//<-----新增评论----->
 type AddCommentForm struct {
 	Content   string `form:"content" valid:"Required;MaxSize(255)"`
 	CreatedBy string `form:"created_by" valid:"Required;MaxSize(100)"`
@@ -98,8 +100,7 @@ func AddComments(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
-
-
+//<-----删除评论----->
 // @Summary delete comment
 // @Produce  json
 // @Param id path int true "ID"
