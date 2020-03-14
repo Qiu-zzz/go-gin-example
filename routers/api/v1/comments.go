@@ -17,7 +17,6 @@ import (
 // @Summary Get multiple comments
 // @Produce  json
 // @Param article_id body int false "ArticleId"
-// @Param parent_id body int false "ParentId"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /comments [get]
@@ -26,10 +25,8 @@ func GetComments(c *gin.Context) {
 	valid := validation.Validation{}
 
 	articleId := com.StrTo(c.Query("articleId")).MustInt()
-	parentId := com.StrTo(c.Query("parentId")).MustInt()
 	commentService := comment_service.Comment{
 		ArticleId: articleId,
-		ParentId:  parentId,
 		PageNum:   util.GetPage(c),
 		PageSize:  setting.AppSetting.PageSize,
 	}

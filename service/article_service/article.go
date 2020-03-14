@@ -19,6 +19,7 @@ type Article struct {
 	State         int
 	CreatedBy     string
 	ModifiedBy    string
+	Sort          string
 
 	PageNum  int
 	PageSize int
@@ -84,11 +85,12 @@ func (a *Article) GetAll() ([]*models.Article, error) {
 	)
 
 	cache := cache_service.Article{
-		TagID: a.TagID,
-		State: a.State,
-
-		PageNum:  a.PageNum,
-		PageSize: a.PageSize,
+		TagID:     a.TagID,
+		State:     a.State,
+		CreatedBy: a.CreatedBy,
+		Sort:      a.Sort,
+		PageNum:   a.PageNum,
+		PageSize:  a.PageSize,
 	}
 	key := cache.GetArticlesKey()
 	if gredis.Exists(key) {
@@ -101,7 +103,7 @@ func (a *Article) GetAll() ([]*models.Article, error) {
 		}
 	}
 
-	articles, err := models.GetArticles(a.PageNum, a.PageSize, a.getMaps())
+	articles, err := models.GetArticles(a.PageNum, a.PageSize, a.getMaps(), a.Sort)
 	if err != nil {
 		return nil, err
 	}
@@ -130,6 +132,9 @@ func (a *Article) getMaps() map[string]interface{} {
 	}
 	if a.TagID != -1 {
 		maps["tag_id"] = a.TagID
+	}
+	if a.CreatedBy != "" {
+		maps["created_by"] = a.CreatedBy
 	}
 
 	return maps

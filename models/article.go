@@ -47,9 +47,9 @@ func GetArticleTotal(maps interface{}) (int, error) {
 }
 
 // GetArticles gets a list of articles based on paging constraints
-func GetArticles(pageNum int, pageSize int, maps interface{}) ([]*Article, error) {
+func GetArticles(pageNum int, pageSize int, maps interface{},sort string) ([]*Article, error) {
 	var articles []*Article
-	err := db.Preload("Tag").Where(maps).Offset(pageNum).Limit(pageSize).Find(&articles).Error
+	err := db.Order(sort).Preload("Tag").Where(maps).Offset(pageNum).Limit(pageSize).Find(&articles).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}

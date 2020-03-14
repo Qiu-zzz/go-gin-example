@@ -13,7 +13,7 @@ type Comment struct {
 	DislikeCount int    `json:"dislike_count"`
 }
 
-// ExistArticleByID checks if an article exists based on ID
+// ExistCommentById checks if a Comment exists based on ID
 func ExistCommentById(id int) (bool, error) {
 	var comment Comment
 	err := db.Select("id").Where("id = ? AND deleted_on = ?", id, 0).First(&comment).Error

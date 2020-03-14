@@ -68,17 +68,24 @@ func GetArticles(c *gin.Context) {
 	valid := validation.Validation{}
 
 	state := -1
-	if arg := c.PostForm("state"); arg != "" {
+	if arg := c.Query("state"); arg != "" {
 		state = com.StrTo(arg).MustInt()
 		valid.Range(state, 0, 1, "state")
 	}
 
 	tagId := -1
-	if arg := c.PostForm("tag_id"); arg != "" {
+	if arg := c.Query("tag_id"); arg != "" {
 		tagId = com.StrTo(arg).MustInt()
 		valid.Min(tagId, 1, "tag_id")
 	}
-
+	createdBy := ""
+	if arg := c.Query("created_by"); arg != "" {
+		createdBy = com.StrTo(arg).String()
+	}
+	sort := ""
+	if arg := c.Query("sort"); arg != "" {
+		sort = com.StrTo(arg).String()+" desc"
+	}
 	if valid.HasErrors() {
 		app.MarkErrors(valid.Errors)
 		appG.Response(http.StatusBadRequest, e.INVALID_PARAMS, nil)
@@ -86,10 +93,12 @@ func GetArticles(c *gin.Context) {
 	}
 
 	articleService := article_service.Article{
-		TagID:    tagId,
-		State:    state,
-		PageNum:  util.GetPage(c),
-		PageSize: setting.AppSetting.PageSize,
+		TagID:     tagId,
+		State:     state,
+		CreatedBy: createdBy,
+		Sort:      sort,
+		PageNum:   util.GetPage(c),
+		PageSize:  setting.AppSetting.PageSize,
 	}
 
 	total, err := articleService.Count()
