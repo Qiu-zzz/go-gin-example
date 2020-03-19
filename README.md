@@ -40,7 +40,7 @@ name=q2&created_by=qwj&state=1
 ## 登录获取token 
 
 ```go
-get方式  /auth?username=test&password=test123
+post方式  /login
 ```
 
 ```go
@@ -53,6 +53,13 @@ get方式  /auth?username=test&password=test123
   "msg": "ok"
 }
 ```
+
+| 字段名   | 字段内容示例 | 注释   |
+| -------- | ------------ | ------ |
+| username | test         | 用户名 |
+| password | test123      | 密码   |
+
+
 
 ## 文章接口
 
