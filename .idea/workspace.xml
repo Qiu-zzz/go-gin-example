@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="23f8acd4-c1d2-4c3a-a824-2c5592280b26" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README_ZH.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/api/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/article_service/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/article_service/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/tag_service/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/tag_service/tag.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,15 +37,16 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sql" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\environment\gopath\src\github.com\go-gin-example\sql" />
+      <recent name="D:\environment\gopath\src\github.com\go-gin-example" />
       <recent name="D:\environment\gopath\src\github.com\EDDYCJY\go-gin-example\sql" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\environment\gopath\src\github.com\go-gin-example" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\environment\gopath\src\github.com\EDDYCJY\go-gin-example\sql" />
     </key>
   </component>

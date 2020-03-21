@@ -75,7 +75,7 @@ func (a *Article) Get() (*models.Article, error) {
 		return nil, err
 	}
 
-	gredis.Set(key, article, 3600)
+	//gredis.Set(key, article, 3600)
 	return article, nil
 }
 
@@ -107,8 +107,8 @@ func (a *Article) GetAll() ([]*models.Article, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	gredis.Set(key, articles, 3600)
+	//redis缓存时间
+	//gredis.Set(key, articles, 30)
 	return articles, nil
 }
 
