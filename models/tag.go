@@ -29,18 +29,18 @@ func ExistTagByName(name string) (bool, error) {
 }
 
 // AddTag Add a Tag
-func AddTag(name string, state int, createdBy string) error {
-	tag := Tag{
-		Name:      name,
-		State:     state,
-		CreatedBy: createdBy,
-	}
-	if err := db.Create(&tag).Error; err != nil {
-		return err
-	}
+	func AddTag(name string, state int, createdBy string) error {
+		tag := Tag{
+			Name:      name,
+			State:     state,
+			CreatedBy: createdBy,
+		}
+		if err := db.Create(&tag).Error; err != nil {
+			return err
+		}
 
-	return nil
-}
+		return nil
+	}
 
 // GetTags gets a list of tags based on paging and constraints
 func GetTags(pageNum int, pageSize int, maps interface{}) ([]Tag, error) {
