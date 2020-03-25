@@ -53,10 +53,10 @@ func GetComments(c *gin.Context) {
 
 //<-----新增评论----->
 type AddCommentForm struct {
-	Content   string `form:"content" valid:"Required;MaxSize(255)"`
-	CreatedBy string `form:"created_by" valid:"Required;MaxSize(100)"`
-	ParentId int `form:"parent_id" `
-	ArticleId int `form:"article_id" valid:"Required;Min(1)"`
+	Content   string `form:"content" valid:"Required;MaxSize(255)" json:"content"`
+	CreatedBy string `form:"created_by" valid:"Required;MaxSize(100)" json:"created_by"`
+	ParentId int `form:"parent_id" json:"parent_id"`
+	ArticleId int `form:"article_id" valid:"Required;Min(1)" json:"article_id"`
 }
 // @Summary Get multiple comments
 // @Produce  json

@@ -58,9 +58,9 @@ func GetTags(c *gin.Context) {
 
 //<-----新增标签----->
 type AddTagForm struct {
-	Name      string `form:"name" valid:"Required;MaxSize(100)"`
-	CreatedBy string `form:"created_by" valid:"Required;MaxSize(100)"`
-	State     int    `form:"state" valid:"Range(0,1)"`
+	Name      string `form:"name" valid:"Required;MaxSize(100)" json:"name"`
+	CreatedBy string `form:"created_by" valid:"Required;MaxSize(100)" json:"created_by"`
+	State     int    `form:"state" valid:"Range(0,1)" json:"state"`
 }
 // @Summary Add article tag
 // @Produce  json
